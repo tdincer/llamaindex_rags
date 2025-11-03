@@ -1,0 +1,180 @@
+---
+
+## 🗓 Project Alpha — Strategy & Operations Sync
+
+**Date:** October 28, 2025
+**Duration:** 45 minutes
+**Participants:** Alice (Project Manager), Bob (Lead Engineer), Carol (UX Designer), Dan (Data Analyst), Erin (Operations)
+
+---
+
+**Alice:** Morning, everyone. Let’s get started. I want to cover three main items today — the onboarding process, progress on the API refactor, and the product launch timeline.
+
+**Bob:** Before we start, quick note — the build pipeline failed last night due to missing dependencies. I fixed it manually, but we should probably lock package versions in the next sprint.
+
+**Alice:** Good catch. Let’s add that to the tech debt list. Carol, you mentioned some friction with the onboarding flow?
+
+**Carol:** Yeah, the new interns keep getting stuck in the design system setup. The documentation still references the old Figma structure.
+
+**Erin:** That’s on me — I thought I’d updated the wiki. I’ll push the revised setup guide today.
+
+**Alice:** Perfect. And Bob, any blockers from your side for onboarding?
+
+**Bob:** Just the VPN issue. IT’s backlog is ridiculous. I’ve pinged them twice already.
+
+**Alice:** I’ll escalate that. We can’t have half the team locked out.
+
+---
+
+### Topic 1: Onboarding and Access Management
+
+**Dan:** I also noticed the interns don’t have access to the analytics sandbox. Should we open that up, or is it still restricted?
+
+**Alice:** Let’s give them read-only access for now. We’ll switch to edit access after two weeks, assuming everything looks good.
+
+**Carol:** Makes sense. They’re still getting used to our structure anyway.
+
+**Bob:** By the way, once they’re onboarded, I’d like to assign one of them to write tests for the new API endpoints. It’ll be a good starter task.
+
+**Alice:** Good idea. Let’s make sure they shadow someone first.
+
+---
+
+### Topic 2: API Refactor Progress
+
+**Alice:** So, the big one — API refactor. Bob, what’s the latest?
+
+**Bob:** The authentication module is 90% done. I simplified token handling, and latency’s down about 28% on internal tests. Next up is session management. I’m considering removing Redis for short-lived sessions — it’s overkill for our load.
+
+**Dan:** But don’t we use Redis for caching too?
+
+**Bob:** Yep, but I’m keeping it for that. I’m just saying we don’t need to store session state there.
+
+**Alice:** What’s the migration risk?
+
+**Bob:** Low. We’ll just clear sessions after deployment. Worst case, users get logged out once.
+
+**Alice:** Acceptable. Can we get it merged by Thursday?
+
+**Bob:** Thursday should work. Depends on the PR review speed.
+
+**Alice:** Let’s block an hour Thursday morning for a quick review.
+
+**Erin:** Should we announce downtime?
+
+**Bob:** Nope, it’ll be rolling — no visible outage.
+
+---
+
+### Topic 3: Dashboard Redesign and Metrics
+
+**Carol:** On design — I’ve been reworking the dashboard filters. Right now, you can only filter by date range, but we need to add metric categories. The current layout breaks when you add more than three filters.
+
+**Alice:** What’s your proposed layout?
+
+**Carol:** A collapsible side panel with persistent filters. I’ll show the mockups on Monday.
+
+**Dan:** If possible, can you group metrics by source? It’d help users understand which data comes from which service.
+
+**Carol:** That’s a good idea. I’ll add a color tag for each source.
+
+**Alice:** Nice. Keep it minimal — we don’t want a rainbow explosion.
+
+**Bob:** The new API structure should make that easier, by the way. I’ve normalized source metadata.
+
+**Carol:** Fantastic. Saves me an extra layer of filtering.
+
+---
+
+### Topic 4: Data Integrity and ETL Issues
+
+**Dan:** Quick update — the ETL pipeline failed on October 24. We lost about 6% of user activity logs. I’ve patched it, but the totals for that day are off.
+
+**Alice:** Should we note that in the reports?
+
+**Dan:** Already added a disclaimer on the dashboard.
+
+**Erin:** What caused the failure?
+
+**Dan:** A malformed timestamp in one of the CSV uploads. It slipped past validation. I’ve added a stricter schema check now.
+
+**Bob:** Can we automate alerts for that kind of issue?
+
+**Dan:** Yep. I’m adding Slack notifications next sprint.
+
+**Alice:** Perfect. Let’s document that in the changelog.
+
+---
+
+### Topic 5: Product Launch Timeline
+
+**Alice:** Now, about the launch — we initially targeted November 10, right?
+
+**Bob:** That’s tight but doable, assuming no major bugs.
+
+**Carol:** We might need an extra two days for final design QA. Some components behave weirdly on mobile Safari.
+
+**Erin:** The marketing materials are ready, but the video demo is still pending voiceover.
+
+**Alice:** Let’s move the internal deadline to November 8, external launch November 12.
+
+**Dan:** Works for me. Gives us a weekend buffer.
+
+**Bob:** Good call. I’ll freeze feature merges by November 6.
+
+**Alice:** Add that to the release checklist.
+
+---
+
+### Topic 6: Security Review
+
+**Erin:** One quick note — compliance requested a review of our data storage policy. Apparently, we’re missing documentation for log retention.
+
+**Bob:** We keep 30 days of logs, rotating nightly. That’s in the config, but not written down.
+
+**Alice:** Can you document it and share it with compliance?
+
+**Bob:** Sure thing.
+
+**Dan:** Should we also check whether S3 backups are encrypted?
+
+**Alice:** Please do. Let’s not find out from the auditors.
+
+---
+
+### Topic 7: Team Check-ins & Culture
+
+**Carol:** Small thing — can we bring back the “Demo Friday” sessions? It helped morale a lot.
+
+**Alice:** Yes! I loved those. Let’s start next Friday. Bob, show off your API magic.
+
+**Bob:** Deal, if Dan demos his analytics dashboard.
+
+**Dan:** Only if Carol’s redesign is ready.
+
+**Carol:** Challenge accepted.
+
+**Erin:** I’ll order donuts for the session.
+
+**Alice:** You’re officially promoted to Chief Donut Officer.
+
+(laughter)
+
+---
+
+### Closing Summary by Alice
+
+**Alice:** Alright, let’s wrap. Here’s what we’ve got:
+
+* Onboarding: Erin to update documentation, Bob to ping IT again about VPNs.
+* API Refactor: Bob finishing session management; review scheduled Thursday.
+* Dashboard: Carol to prepare mockups with source color tags by Monday.
+* Data: Dan to finalize ETL alerts and document the October 24 anomaly.
+* Launch: Internal deadline Nov 8, public launch Nov 12.
+* Security: Bob to document log retention and Dan to verify encryption.
+* Team: Demo Fridays return next week — donuts guaranteed.
+
+**Everyone:** (laughs, agreement sounds)
+
+**Alice:** Thanks, everyone. Great momentum. Let’s keep it rolling.
+**Meeting adjourned at 10:47 AM.**
