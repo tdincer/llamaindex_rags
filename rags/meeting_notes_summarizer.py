@@ -31,6 +31,7 @@ DEFAULT_LLM_MODEL = "llama3.2:latest"
 DEFAULT_EMBED_MODEL = "embeddinggemma:latest"
 DEFAULT_CHUNK_SIZE = 10**6
 DEFAULT_TEMPERATURE = 0.3
+REQUEST_TIMEOUT = 1024
 
 # Logging setup
 logging.basicConfig(
@@ -65,14 +66,14 @@ def main(input_file: Union[str, Path]):
     llm = Ollama(
         model="llama3.2:latest",
         base_url=OLLAMA_BASE_URL,
-        request_timeout=1024,
+        request_timeout=REQUEST_TIMEOUT,
         temperature=DEFAULT_TEMPERATURE,
     )
 
     embedding = OllamaEmbedding(
         model_name="embeddinggemma:latest",
         base_url=OLLAMA_BASE_URL,
-        request_timeout=1024,
+        request_timeout=REQUEST_TIMEOUT,
     )
 
     logging.info("Loading input documents...")
