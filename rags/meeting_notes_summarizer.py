@@ -30,6 +30,7 @@ OLLAMA_BASE_URL = "http://localhost:11434"
 DEFAULT_LLM_MODEL = "llama3.2:latest"
 DEFAULT_EMBED_MODEL = "embeddinggemma:latest"
 DEFAULT_CHUNK_SIZE = 10**6
+DEFAULT_TEMPERATURE = 0.3
 
 # Logging setup
 logging.basicConfig(
@@ -65,7 +66,7 @@ def main(input_file: Union[str, Path]):
         model="llama3.2:latest",
         base_url=OLLAMA_BASE_URL,
         request_timeout=1024,
-        temperature=0.3,
+        temperature=DEFAULT_TEMPERATURE,
     )
 
     embedding = OllamaEmbedding(
@@ -78,7 +79,7 @@ def main(input_file: Union[str, Path]):
     reader = SimpleDirectoryReader(input_files=[input_file])
     documents = reader.load_data()
 
-    splitter = SentenceSplitter(chunk_size=10**6)
+    splitter = SentenceSplitter(chunk_size=DEFAULT_CHUNK_SIZE)
     whole_docs = splitter.get_nodes_from_documents(documents)
 
     logging.info("Building document summary index...")
